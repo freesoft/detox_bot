@@ -1,4 +1,4 @@
-# Detox ChatBot 
+# "Detox" toxic chat classifier integrated with Twitch Chatbot
 
 ## Overview
 
@@ -7,16 +7,30 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 [[ TODO ]]
 
 ## Features
-* Detox Chatbot engine uses TF-IDF for vectorizing and Multinomial Naive Bayes classifier. 
-* Minimum memory footprint. ( uses CSV partial loading with default 10,000 chunksize )
+* The Detox uses TF-IDF, that enables it to penalize and rewards those frequent/rare words along with frequence of words in docs/message.
+* Uses Multinomial Naive Bayes classifier, that enables incremental learning without re-learn from the scratch whenever it has new training set to learn.
+* Minimum memory footprint while training. Only 300MB-ish memory required with 10,000 CSV chunksize while training.
 * Reuse trained classifer engine and also fitted vectorizer so it runs faster after initial execution.
-* Also since those files are stored in disk as file, you can simply copy it and use it whereever you want.
-* The engine supports Out-of-core model fitting (a.k.a incremental training/learning) ( thank you for Naive Bayes!!! )
-* It has integerated Twitch Chatbot so you can test the engine against any TwitchTV channel. ( don't abuse! )
+* The engine supports Out-of-core model fitting, a.k.a incremental training/learning. Thank you for Naive Bayes!!!
+* Integerated Twitch Chatbot so Moira can be deployed to any TwitchTV channel and determine if chat is toxic.
 
 ## Requirement
 
-Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn)
+Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn). It won't run with Python2, so make sure you have Python3 installed, 
+
+```
+> python --version                                                                                                                                                                                    
+Python 3.6.5 :: Anaconda, Inc.
+```
+Or maybe your local has both python (that's actually python2) and python3 separately. Use `python3` for running if that's the case.
+
+Use `pip` or `conda`(depends on which python lib depednecny managemenet system you use) to install those dependencies to execute the Detox. For example, if running detox_engine.py complain about missing nltk library, then simply run
+
+```
+pip install nltk 
+```
+smae for other library dependencies.
+
 
 ## How to Use
 
@@ -25,7 +39,7 @@ Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn)
 After Git clone the project in your local machine, simply type
 
 ```
-python3 detox_engine.py
+python detox_engine.py
 ```
 
 to run with existing configuration and trained model.
@@ -52,6 +66,12 @@ Simply type
 python3 chatbot.py Moira <client id> <oauth2 acccess token> <channel name>
 ```
 and you'll see that the program is collecting the live chat log from the TwhtchTV channel, and determine if chat is toxic or not.
+
+Parameter explanation:
+
+* `<client id>` : visit https://glass.twitch.tv/ and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
+* `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
+* `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
 
 ## TODO ( later )
 * Dockerize it or make it deployable on Heroku with one-click
