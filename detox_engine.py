@@ -29,7 +29,7 @@ import constant
 # 
 # !!!! IMPORTANT !!!
 #
-# Which means if you ever chagne any code in __init___ that could affect the way how classifier/vectorizer is going to work,
+# Which means if you ever chagne any code in __init__ that could affect the way how classifier/vectorizer is going to work,
 # then you need to delete two files so that program recrete them. Those two files you need to delete are "classifier.joblib", and "vectorizer.joblib"
 # defined in constant.py.
 class ToxicityClassifier():

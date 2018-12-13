@@ -63,12 +63,13 @@ Since the code has tiny TwitchTV chatbot integrated(`chatbot.py`), you can use t
 Simply type
 
 ```
-python3 chatbot.py Moira <client id> <oauth2 acccess token> <channel name>
+python chatbot.py <username> <client id> <oauth2 acccess token> <channel name>
 ```
 and you'll see that the program is collecting the live chat log from the TwhtchTV channel, and determine if chat is toxic or not.
 
 Parameter explanation:
 
+* `<username>` : Your username on Twitch. 
 * `<client id>` : visit https://glass.twitch.tv/ and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
 * `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
 * `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.

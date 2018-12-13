@@ -3,7 +3,7 @@ import irc.bot
 import requests
 
 import constant
-from sentiment_twitch import ToxicityClassifier
+from detox_engine import ToxicityClassifier
 
 from joblib import dump, load
 
@@ -98,6 +98,12 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
             print("Did not understand command:" + cmd)
 
 def main():
+
+    if not sys.version_info[:1] == (3,):
+        print(sys.version_info[:1] )
+        sys.stderr.write("Python version 3 is required.\n")
+        exit(1)
+
     if len(sys.argv) != 5:
         print("Usage: twitchbot <username> <client id> <token> <channel>")
         sys.exit(1)

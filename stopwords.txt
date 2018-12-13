@@ -53,6 +53,7 @@ asked
 asking
 asks
 at
+atm
 av
 away
 b
@@ -61,6 +62,7 @@ backed
 backing
 backs
 be
+bc
 became
 because
 become
@@ -201,7 +203,9 @@ grouped
 grouping
 groups
 h
+ha
 had
+haha
 halves
 hardly
 has
@@ -237,6 +241,7 @@ however
 howevhowevhoif
 howsoever
 i
+ic
 ie
 if
 important
@@ -263,12 +268,17 @@ it
 its
 itself
 j
+jk
 just
 k
 keep
 keeps
 kg
 kind
+kk
+kkk
+kkkk
+kkkkk
 km
 knew
 know
@@ -290,9 +300,13 @@ lets
 like
 likely
 little
+lmao
+lmk
+lol
 long
 longer
 longest
+lul
 ltd
 m
 made
@@ -348,6 +362,7 @@ notwithstanding
 now
 nowadays
 nowhere
+np
 number
 numbers
 o
@@ -355,7 +370,6 @@ of
 off
 often
 ok
-old
 older
 oldest
 on
@@ -482,6 +496,7 @@ stave
 staves
 still
 such
+sup
 supposing
 sure
 t
@@ -553,6 +568,7 @@ up
 upon
 upward
 upwards
+ur
 us
 use
 used
@@ -633,6 +649,7 @@ worst
 would
 wow
 x
+xdd
 y
 ye
 year
@@ -648,3 +665,4 @@ yourself
 yourselves
 yyyyyyyung
 z
+zzz
