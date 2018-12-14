@@ -30,7 +30,14 @@ Use `pip` or `conda`(depends on which python lib depednecny managemenet system y
 pip install nltk 
 ```
 smae for other library dependencies.
+WHen you use Anaconda, if you use python 3 then pip will be pip3 as well. However, if you are using those python dependencies by yourself, there is a chance that you use python 3 but install moduels with pip, which is only for python 2. Make sure what pip you are using by running
 
+<pre>
+>pip --version
+pip 18.1 from /anaconda3/lib/python3.6/site-packages/pip (python 3.6)
+</pre>
+
+and see what's the python version that your pip supports.
 
 ## How to Use
 
