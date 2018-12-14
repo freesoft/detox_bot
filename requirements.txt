@@ -4,4 +4,7 @@ pandas
 joblib
 sklearn
 gevent
+gevent.monkey
 flask
+flask_sockets
+detox_engine
