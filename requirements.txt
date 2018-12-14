@@ -1,0 +1,9 @@
+csv
+nltk
+numpy
+pandas
+joblib
+sklearn
+gevent
+flask
+json
