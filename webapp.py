@@ -1,3 +1,5 @@
+from detox_engine import ToxicityClassifier
+
 # following three lines should have come first than any other imports.
 import gevent.monkey
 gevent.monkey.patch_all(subprocess=True)
@@ -9,7 +11,7 @@ import gevent
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 
-from detox_engine import ToxicityClassifier
+
 from joblib import load
 import constant
 
