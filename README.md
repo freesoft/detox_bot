@@ -43,7 +43,32 @@ python detox_engine.py
 ```
 
 to run with existing configuration and trained model.
-The program will load test data from the file, and print those toxicity logs in the console.
+The program will load test data from the file(`data/test.csv`), and soon prints toxic-identified message(s) in the console.
+
+
+
+### With TwitchTV channel
+
+The project comes with tiny TwitchTV chatbot(`chatbot.py`), so you can use it to livefeed the chat log into the Detox.<br/>
+Simply type
+
+```
+python chatbot.py <username> <client id> <oauth2 acccess token> <channel name>
+```
+and you'll see that the program is collecting the live chat log from the TwhtchTV channel, and determine if chat is toxic or not.<br/>
+It will also create a file with same channel name that Chatbox connected(`<channel name>`) and start logging the message.
+
+Parameter explanation:
+
+* `<username>` : Your username on Twitch. 
+* `<client id>` : visit https://glass.twitch.tv/ and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
+* `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
+* `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
+
+
+## FAQ
+
+### I'd like to train the classifier with my own data. What should I do?
 
 If you want to see how it generates classfier and train it, not using pre-existing one, simply delete `classifier.joblib` and `vectorizer.joblib` and re-run the above shell command.
 
@@ -53,26 +78,9 @@ First line should start with following header title,
 ```
 "id","comment_text" 
 ```
-and fron 2nd line you can use your own data. The engine doesn't care much about the value in the "id" part and add whatever chat logs you'd like to test.
+and from 2nd line you can use your own data. The engine doesn't care much about the value in the "id" part and add whatever chat logs you'd like to test.
 
 Training data file has similar format, but it has additional CSV column that needs to be pre-labeled by human so that it can be used for traning purpose.
-
-### With TwitchTV channel
-
-Since the code has tiny TwitchTV chatbot integrated(`chatbot.py`), you can use this python program to live feed the chat log into the engine.
-Simply type
-
-```
-python chatbot.py <username> <client id> <oauth2 acccess token> <channel name>
-```
-and you'll see that the program is collecting the live chat log from the TwhtchTV channel, and determine if chat is toxic or not.
-
-Parameter explanation:
-
-* `<username>` : Your username on Twitch. 
-* `<client id>` : visit https://glass.twitch.tv/ and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
-* `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
-* `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
 
 ## TODO ( later )
 * Dockerize it or make it deployable on Heroku with one-click

@@ -9,6 +9,7 @@ Those sample data files are downloaded from Kaggle.
 import csv
 import os
 import os.path
+import sys
 import time
 from builtins import range
 
@@ -37,17 +38,6 @@ class ToxicityClassifier():
 
         start_time = time.time()
 
-        # entire training set
-        #train_data_path = "data/train.csv"
-
-        # has first 161060 sample data(lines)
-        train_data_path = "data/train_sample_161060.csv"
-
-        # has first 8241 sample data(lines)
-        # train_data_path = "data/train_sample_8241.csv" 
-        # Following line's datafile is huge and python process will be killed while it is running.. or maybe taking forever with partial_fit
-        # train_data_path = "data/train.csv"
-
         self.stopwords = set(w.rstrip() for w in open('stopwords.txt'))
         self.vectorizer = TfidfVectorizer(tokenizer=ToxicityClassifier.tokenizer, stop_words=self.stopwords, analyzer="word")
 
@@ -63,7 +53,7 @@ class ToxicityClassifier():
         if os.path.exists(constant.CLASSIFIER_FILE) == False:
             print("Can't find existing classifier stored in the file. Creating one...")
 
-            for df in pd.read_csv(train_data_path, delimiter=',', error_bad_lines=True, skipinitialspace=True, chunksize=constant.CVS_CHUNKSIZE, iterator=True):
+            for df in pd.read_csv(constant.TRAINING_DATA_PATH, delimiter=',', error_bad_lines=True, skipinitialspace=True, chunksize=constant.CVS_CHUNKSIZE, iterator=True):
                 df = df.replace('\n','', regex=True)
                 # The data I got have 6 different categorizaiton, not just toxic or not, so merging it all together as one label
                 # as long as there is at least one field marked as '1', those will be considered as toxic.
@@ -137,9 +127,9 @@ class ToxicityClassifier():
 def main():
     print("Initiating...")
 
-    # below code has smaller set of test data. Enable it instead if you want quicker testing
+    # below file has smaller set of test data. Enable it instead if you want quicker testing
     test_data_path = "data/test_sample.csv"
-    # below file has full set of test data
+    # below file has full set of test data. Try with it if you see more dresult. Beware : it will take some time.
     #test_data_path = "data/test.csv"
 
     toxicClassifier = ToxicityClassifier()
@@ -164,4 +154,10 @@ def main():
 
 # just in case if need to run the test locally without TwitchBox working together
 if __name__ == "__main__":
+
+    if not sys.version_info[:1] == (3,):
+        print(sys.version_info[:1] )
+        sys.stderr.write("Python version 3 is required.\n")
+        exit(1)
+
     main()
