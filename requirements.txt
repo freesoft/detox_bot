@@ -6,4 +6,3 @@ sklearn
 gevent
 flask
 flask_sockets
-detox_engine
