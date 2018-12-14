@@ -34,4 +34,5 @@ def handle_my_custom_event(msg, methods=['GET', 'POST']):
         socketio.emit('my response', { 'username': msg['username'], 'message': msg['message'], 'is_toxic': '0'}, callback=messageReceived)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, debug=True, host='0.0.0.0', port=port)
