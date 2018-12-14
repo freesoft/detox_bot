@@ -41,6 +41,9 @@ and see what's the python version that your pip supports.
 
 ## How to Use
 
+## deploy directly from Github to Heroku
+
+Click this [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) and that's all<br/>
 
 ### in your local with given test dataset
 After Git clone the project in your local machine, simply type
