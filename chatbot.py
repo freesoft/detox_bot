@@ -2,10 +2,7 @@ import sys
 import irc.bot
 import requests
 
-import constant
 from detox_engine import ToxicityClassifier
-
-from joblib import dump, load
 
 class TwitchBot(irc.bot.SingleServerIRCBot):
     def __init__(self, username, client_id, token, channel):
