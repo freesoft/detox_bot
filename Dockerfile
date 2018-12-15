@@ -14,7 +14,8 @@ RUN pip3 install -U nltk
 RUN python3 -m nltk.downloader popular
 RUN pip3 install -U numpy
 RUN pip3 install -r requirements.txt
-RUN python3 detox_engine.py
+# prepare classifier and vectorizer so webapp will start up faster
+RUN python3 ./detox_engine.py
 ENTRYPOINT ["python3"]
 CMD ["webapp.py"]
 
