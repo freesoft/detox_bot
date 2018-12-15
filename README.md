@@ -1,4 +1,4 @@
-# "Detox" toxic chat classifier integrated with Twitch Chatbot
+# "Detox" toxic chat classifier
 
 ## Overview
 
@@ -13,10 +13,11 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 * Reuse trained classifer engine and also fitted vectorizer so it runs faster after initial execution.
 * The engine supports Out-of-core model fitting, a.k.a incremental training/learning. Thank you for Naive Bayes!!!
 * Integerated Twitch Chatbot so Moira can be deployed to any TwitchTV channel and determine if chat is toxic.
+* Integrated simple web chat app and TwitchTV chatbot.
 
 ## Requirement
 
-Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn). It won't run with Python2, so make sure you have Python3 installed, 
+Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn).  
 
 ```
 > python --version                                                                                                                                                                                    
@@ -41,9 +42,11 @@ and see what's the python version that your pip supports.
 
 ## How to Use
 
-## deploy directly from Github to Heroku
+## Pre-deployed instance on Heroku
 
-Click this [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) and that's all<br/>
+https://detox-uiuc-cs410.herokuapp.com/
+
+## Runing with Docker
 
 ### in your local with given test dataset
 After Git clone the project in your local machine, simply type
