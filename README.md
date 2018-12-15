@@ -17,9 +17,11 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 
 ## How to Use
 
+Three ways to. From using existing Heroku instance to run it locally as usual Python program. 
+
 ### Easy difficulty way : Pre-deployed instance on Heroku
 
-For functionality testing, I've deployed simple webapp as Docker image on (https://detox-uiuc-cs410.herokuapp.com/)[https://detox-uiuc-cs410.herokuapp.com/]
+For functionality testing, I've deployed simple webapp as Docker image on (https://uiuc-cs410-detox.herokuapp.com)[https://uiuc-cs410-detox.herokuapp.com]
 Just open one or two of them, annd try multi chat. See how it works. For any toxic chat that Detox recoginze, the messsage will be displayed in red with "toxic" prefix.
 
 
@@ -34,7 +36,7 @@ Just open one or two of them, annd try multi chat. See how it works. For any tox
 After Git clone the project in your local machine, simply type
 
 ```
-python detox_engine.py
+python ./webapp.py
 ```
 
 to train the model before running the test app. The code has sme dependency so you probably need to install a few other python libraries that's specified in requirements.txt. brew, apt-get, macport, pip, anaconda, virtualenv, etc. there are many choices you can install those dependencies.
