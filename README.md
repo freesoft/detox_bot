@@ -4,59 +4,40 @@
 
 This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 2018 CS410 project submission. It is required by UIUC that the project need to be uploaded on public Git repository. After getting grade by UIUC, I'm going to keep working on improving the code.
 
-[[ TODO ]]
-
 ## Features
+
 * The Detox uses TF-IDF, that enables it to penalize and rewards those frequent/rare words along with frequence of words in docs/message.
 * Uses Multinomial Naive Bayes classifier, that enables incremental learning without re-learn from the scratch whenever it has new training set to learn.
-* Minimum memory footprint while training. Only 300MB-ish memory required with 10,000 CSV chunksize while training.
+* Minimum memory footprint while training. Training data size can be controllable depends on the ysstem. Only 300MB-ish memory required with 10,000 CSV chunksize while training.
 * Reuse trained classifer engine and also fitted vectorizer so it runs faster after initial execution.
 * The engine supports Out-of-core model fitting, a.k.a incremental training/learning. Thank you for Naive Bayes!!!
 * Integerated Twitch Chatbot so Moira can be deployed to any TwitchTV channel and determine if chat is toxic.
 * Integrated simple web chat app and TwitchTV chatbot.
 
-## Requirement
-
-Python3 along with a few modules (csv, nltk, numpy, pandas, joblib, sklearn).  
-
-```
-> python --version                                                                                                                                                                                    
-Python 3.6.5 :: Anaconda, Inc.
-```
-Or maybe your local has both python (that's actually python2) and python3 separately. Use `python3` for running if that's the case.
-
-Use `pip` or `conda`(depends on which python lib depednecny managemenet system you use) to install those dependencies to execute the Detox. For example, if running detox_engine.py complain about missing nltk library, then simply run
-
-```
-pip install nltk 
-```
-smae for other library dependencies.
-WHen you use Anaconda, if you use python 3 then pip will be pip3 as well. However, if you are using those python dependencies by yourself, there is a chance that you use python 3 but install moduels with pip, which is only for python 2. Make sure what pip you are using by running
-
-<pre>
->pip --version
-pip 18.1 from /anaconda3/lib/python3.6/site-packages/pip (python 3.6)
-</pre>
-
-and see what's the python version that your pip supports.
 
 ## How to Use
 
-## Pre-deployed instance on Heroku
+### Easy difficulty way : Pre-deployed instance on Heroku
 
-https://detox-uiuc-cs410.herokuapp.com/
+For functionality testing, I've deployed simple webapp as Docker image on (https://detox-uiuc-cs410.herokuapp.com/)[https://detox-uiuc-cs410.herokuapp.com/]
+Just open one or two of them, annd try multi chat. See how it works. For any toxic chat that Detox recoginze, the messsage will be displayed in red with "toxic" prefix.
 
-## Runing with Docker
 
-### in your local with given test dataset
+### Normal difficulty way : Runing with Docker image in your local
+
+* Enough memory for the machine for training the model and Docker build/run.
+* (Docker)[https://www.docker.com] installed.
+
+
+### Hard difficulty way : in your local with given test dataset
+
 After Git clone the project in your local machine, simply type
 
 ```
 python detox_engine.py
 ```
 
-to run with existing configuration and trained model.
-The program will load test data from the file(`data/test.csv`), and soon prints toxic-identified message(s) in the console.
+to train the model before running the test app. The code has sme dependency so you probably need to install a few other python libraries that's specified in requirements.txt. brew, apt-get, macport, pip, anaconda, virtualenv, etc. there are many choices you can install those dependencies.
 
 
 
@@ -103,4 +84,6 @@ Training data file has similar format, but it has additional CSV column that nee
 
 ## Resources
 
-[[ TODO ]]
+* Docker Hub docker image : https://hub.docker.com/r/freesoft/uiuc-cs410-fall2018
+ * image pull : `docker pull freesoft/uiuc-cs410-fall2018` ( those latest builds are all failing due to memory size issue that build requires, but updated docker image is ready-to-use )
+ 
