@@ -8,3 +8,4 @@ flask
 flask_socketio
 flask_sockets
 gunicorn
+nltk

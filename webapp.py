@@ -1,10 +1,12 @@
 # following three lines should have come first than any other imports.
 import gevent.monkey
-gevent.monkey.patch_all(subprocess=True)
+gevent.monkey.patch_all()
 
+import sys
 import json
 import os
 import gevent
+
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
@@ -46,4 +48,4 @@ def handle_my_custom_event(msg, methods=['GET', 'POST']):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    socketio.run(app, debug=False, host='0.0.0.0', port=port)
+    socketio.run(app, debug=True, host='0.0.0.0', port=port)

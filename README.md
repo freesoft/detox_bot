@@ -17,13 +17,19 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 
 ## How to Use
 
-Three ways to. From using existing Heroku instance to run it locally as usual Python program. 
+Four ways to install and use. From using existing Heroku instance to run it locally as usual Python program. 
 
 ### Easy difficulty way : Pre-deployed instance on Heroku
 
 For functionality testing, I've deployed simple webapp as Docker image on (https://uiuc-cs410-detox.herokuapp.com)[https://uiuc-cs410-detox.herokuapp.com]
-Just open one or two of them, annd try multi chat. See how it works. For any toxic chat that Detox recoginze, the messsage will be displayed in red with "toxic" prefix.
+Just open one or two of them, annd try multi chat. See how it works. For any toxic chat that Detox recoginze, the messsage will be displayed in red with "toxic" prefix. **Recommended** if you only need to test how the classifier works.
 
+
+### Less-easy difficulty way : Deploy app to your Heroku instance
+
+Press following button and install on your own Heroku instance.<br/>
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) <br/>
+You will need to create a Heroku account to use it.
 
 ### Normal difficulty way : Runing with Docker image in your local
 
