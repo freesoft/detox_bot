@@ -60,7 +60,7 @@ The project has Dockerfile script that you can use for Docker image build. Also,
 
 ### 1. build Docker image and start
 
-Install (Docker)[https://www.docker.com] for your macine and checkout the git repo. Once it's ready, then run
+Install [Docker](https://www.docker.com) for your macine and checkout the git repo. Once it's ready, then run
 
 ```
 docker build -t uiuc-cs410-fall2018:detox .
@@ -118,8 +118,8 @@ Parameter explanation:
 
 * `<username>` : Your username on Twitch. 
 * `<client id>` : visit [https://glass.twitch.tv/](https://glass.twitch.tv/) and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
-* `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
-* `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
+* `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connect with Twitch", and use it for `<oauth2 access token>`.
+* `<channel name>` : TwitchTV channel name you'd like to deploy the Detox engine. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
 
 
 
@@ -138,4 +138,20 @@ First line should start with following header title,
 and from 2nd line you can use your own data. The engine doesn't care much about the value in the "id" part and add whatever chat logs you'd like to test.
 
 Training data file has similar format, but it has additional CSV column that needs to be pre-labeled by human so that it can be used for traning purpose.
+
+### I'd like to know more about Twitch TV Chatbot. Where I can find the relevant docs?
+
+Check out [https://dev.twitch.tv/docs/irc/guide/](https://dev.twitch.tv/docs/irc/guide/). You can find more on their [dev site](https://dev.twitch.tv/docs/.
+
+### Where I can contact for aksing questions or issue to report?
+
+Please [open a new issue](https://github.com/freesoft/detox_bot/issues/new) on this Github repository and I'll take a look shortly.
  
+## Resources ##
+
+* NLTK : https://www.nltk.org
+* Scikit-learn : http://scikit-learn.org
+* Docker : http://docker.com
+* Heroku : http://heroku.com
+* Docker Hub : http://dockerhub.com
+

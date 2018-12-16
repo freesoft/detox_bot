@@ -2,7 +2,7 @@
 Author : Wonhee Jung ( wonheej2@illinois.edu, wonhee.jung@gmail.com )
 Since : Nov, 2018
 
-UIUC MCS-DS CS410 Fall 2018 Project
+UIUC MCS-DS CS410 Fall 2018 Project.
 '''
 import csv
 import gc
@@ -121,9 +121,9 @@ class ToxicityClassifier():
     # with given parameter s, it returns whether s is toxic or not
     # it is not expecting any arrays, it should be just single string value
     def isToxic(self, s):
-        #print("input words:", self.vectorizer.transform( np.array([s])).toarray())
+
         pred = self.classifier.predict( self.vectorizer.transform( np.array([s])).toarray() )
-        #print(pd.DataFrame(self.classifier.predict_log_proba( self.vectorizer.transform( np.array([s])).toarray() ), columns=self.classifier.classes_))
+        
         if pred[0] == 1:
             return True
         else:
