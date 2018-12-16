@@ -76,7 +76,7 @@ Parameter explanation:
 
 A few customizations are done here.<br/>
 
-* stopwords.txt modification : original stopwords.txt was from CS410 class' PyMetaPy. However, it turned out the target documents that the project was aiming, which is online chat/in-game chat/etc, include so many slang words that doesn't add much meaning in it or simply abbreviation-ish. 
+* stopwords.txt modification : original stopwords.txt was from CS410 class' PyMetaPy. However, it turned out the target documents that the project was aiming, which is online chat/in-game chat/etc, include so many slang words that doesn't add much meaning in it or simply abbreviation-ish. Add dozens of those "useless" slangs in the file so that tokenizer and vectorizer can focus more on their work.
 
 ### How the core engine is integrated
 
