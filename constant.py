@@ -15,7 +15,7 @@ CVS_CHUNKSIZE = 15000
 
 
 # has first 161060 sample data(lines)
-# TRAINING_DATA_PATH = "data/train_sample_161060.csv"
+TRAINING_DATA_PATH = "data/train_sample_161060.csv"
 
 # has first 8241 sample data(lines)
 # TRAINING_DATA_PATH = "data/train_sample_8241.csv" 
@@ -23,4 +23,4 @@ CVS_CHUNKSIZE = 15000
 # Following line's datafile is huge and python process will be killed while it is running.. or maybe taking forever with partial_fit
 # there are two other training sample data with project, which is data/train_sample_161060.csv and data/train_sample_8241.csv
 # that suffix means the line of traning data in the file. Change it to smaller one to see how Detox behaves with different training size/set.
-TRAINING_DATA_PATH = "data/train.csv"
+# TRAINING_DATA_PATH = "data/train.csv"

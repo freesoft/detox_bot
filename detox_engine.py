@@ -95,14 +95,6 @@ class ToxicityClassifier():
             training = self.vectorizer.fit_transform(df['comment_text'])  
             del df
             gc.collect()
-                #first_run = False
-            #else:
-            #    training = self.vectorizer.transform(df['comment_text'])  
-
-            # if you want to check what's the transformed chat log matrix look like, uncomment below lines.
-            #print("looking at the shape of the training set...")
-            #print(training.shape)
-            #print(training)
 
             print("Initiating training...")
             train_x, test_x, train_y, test_y = train_test_split(training.toarray(), toxic.values, test_size=0.2)
@@ -113,13 +105,13 @@ class ToxicityClassifier():
             del train_x, train_y
             gc.collect()
                 
-            #print("Completed training. Generating classification result...")
-            #pred_y = self.classifier.predict(test_x)
+            print("Completed training. Generating classification result...")
+            pred_y = self.classifier.predict(test_x)
 
-            del test_x, test_y
+            del test_x
             gc.collect()
 
-            #print(classification_report(test_y, pred_y))
+            print(classification_report(test_y, pred_y))
 
             # store the classifier and vectorizer so it can be used later    
             print("Storing classifier and vectorizer into disk...")
