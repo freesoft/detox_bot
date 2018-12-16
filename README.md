@@ -48,7 +48,7 @@ A few customizations are done here.<br/>
 
 ## Quick startup & test by web chat 
 
-The Detox and its webchat app is deployed on Heroku. (https://uiuc-cs410-detox.herokuapp.com)[https://uiuc-cs410-detox.herokuapp.com] <br/>
+The Detox and its webchat app is deployed on Heroku. [https://uiuc-cs410-detox.herokuapp.com](https://uiuc-cs410-detox.herokuapp.com) <br/>
 Just open the url from your web browser, and try chat. It's ugly webchat but actually functioning for multi chat. Try open a few more tab on your browser and see how toxic classifier works. For any toxic chat that Detox recoginze, the messsage will be displayed in red with "toxic" prefix. **Recommended** if you only need to test how the classifier works.
 
 ![diagram 2](/diagram/overview_chat.png)
@@ -79,7 +79,7 @@ One possible problem is, the Detox requires lots of memory during the training a
 
 ### 2. Use pre-built Docker image
 
-Just in case you have a problem with building the docker image in your local, you can download pre-built image from (here)[https://hub.docker.com/r/freesoft/uiuc-cs410-fall2018].<br/>
+Just in case you have a problem with building the docker image in your local, you can download pre-built image from [here](https://hub.docker.com/r/freesoft/uiuc-cs410-fall2018).<br/>
 To pull the image, run
 
 ```
@@ -117,7 +117,7 @@ It will also create a file with same channel name that Chatbox connected(`<chann
 Parameter explanation:
 
 * `<username>` : Your username on Twitch. 
-* `<client id>` : visit https://glass.twitch.tv/ and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
+* `<client id>` : visit [https://glass.twitch.tv/](https://glass.twitch.tv/) and login with your own Twitch account. Once you create new app, you'll be able to get Client ID on Dashboard -> App section. <br/>
 * `<oauth2 access token>` : visit [here](https://twitchapps.com/tmi/#access_token=flwh72scl6503e6bs2xnwl6g6l5jeu&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+chat_login&token_type=bearer) and click "Connec with Twitch", and use it for `<oauth2 access token>`.
 * `<channel name>` : TwitchTV channel name you'd like to deploy Moira. Use the channel name you can check from web browser's url, which is generally all lowercase regardless of what you can see on twitch user's dashboard.
 
