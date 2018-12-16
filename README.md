@@ -17,7 +17,7 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 
 ## How to Use
 
-Four ways to install and use. From using existing Heroku instance to run it locally as usual Python program. 
+`detox_engine.py` Four ways to install and use. From using existing Heroku instance to run it locally as usual Python program. 
 
 ### Easy difficulty way : Pre-deployed instance on Heroku
 
