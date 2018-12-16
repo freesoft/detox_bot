@@ -3,8 +3,6 @@ Author : Wonhee Jung ( wonheej2@illinois.edu, wonhee.jung@gmail.com )
 Since : Nov, 2018
 
 UIUC MCS-DS CS410 Fall 2018 Project
-
-Those sample data files are downloaded from Kaggle.
 '''
 import csv
 import gc
@@ -49,11 +47,6 @@ class ToxicityClassifier():
         # creating the Multinomial Naive Bayes with Laplacian smoothing.
         self.classifier = MultinomialNB()
 
-        # only fit_transform for the first run, and then just transform the vector so that we don't have a situation
-        # that your previous incremental traning and new traning set have different number of features, and it ends up
-        # Panda/Scikit-learn complaining about it.
-        # first_run = True
-
         # if and only if model doesn't exist in the file, execute this block, means you need to delete the existing model file to re-run this.
         if os.path.exists(constant.CLASSIFIER_FILE) == False:
             print("Can't find existing classifier stored in the file. Creating one...")
@@ -67,18 +60,9 @@ class ToxicityClassifier():
                 'insult' : 'uint8',
                 'identity_hate' : 'uint8'
             }
+
             df = pd.read_csv(constant.TRAINING_DATA_PATH, dtype=dtypes)
             df = df.replace('\n','', regex=True)
-            # The data I got have 6 different categorizaiton, not just toxic or not, so merging it all together as one label
-            # as long as there is at least one field marked as '1', those will be considered as toxic.
-            # Instead of just getting each feature from dataframe, we can actually reduce the size of dataframe by calling df.pop().
-            #toxic = \
-            #    df.pop('toxic') | \
-            #    df.pop('severe_toxic') | \
-            #    df.pop('obscene') | \
-            #    df.pop('threat') | \
-            #    df.pop('insult') | \
-            #    df.pop('identity_hate')
 
             toxic = \
                 df['toxic'] | \
@@ -88,10 +72,6 @@ class ToxicityClassifier():
                 df['insult'] | \
                 df['identity_hate'] 
             
-            # I would try word2vec or other word embedding method if I have more time with the project...
-            # but this is how I'm going to solve the issue that # of features between previous and new one is going to have.
-            # TODO : change those to word embedding + lookup
-            #if first_run == True:
             training = self.vectorizer.fit_transform(df['comment_text'])  
             del df
             gc.collect()
@@ -169,10 +149,6 @@ def main():
     # transform test data's chat log to the existing vecorizer so it can be used for prediction        
     data = toxicClassifier.vectorizer.transform( df['comment_text'] )
     preds = toxicClassifier.classifier.predict( data )
-
-    # enable blow if you want to see what's the prediction for entire dataframe.
-    # print("preds")
-    # print(preds)
 
     # print(pd.DataFrame(preds, columns=toxicClassifier.classifier.classes_))
     for i in range(len(preds)):
