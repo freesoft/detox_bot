@@ -3,10 +3,9 @@ Author : Wonhee Jung ( wonheej2@illinois.edu, wonhee.jung@gmail.com )
 Since : Nov, 2018
 
 UIUC MCS-DS CS410 Fall 2018 Project
-
-Those sample data files are downloaded from Kaggle.
 '''
 import csv
+import gc
 import os
 import os.path
 import sys
@@ -20,11 +19,14 @@ from joblib import dump, load
 from nltk import word_tokenize,sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report,confusion_matrix
 
 # includes all the defined constant variables.
 import constant
 
+os.environ['OMP_NUM_THREADS'] = '2'
 
 # The class will create two joblib files to store the trained classifier and vectorizer so that it can be reused quickly
 # instead of training it from the beginning.
@@ -40,51 +42,56 @@ class ToxicityClassifier():
         start_time = time.time()
 
         self.stopwords = set(w.rstrip() for w in open('stopwords.txt'))
-        self.vectorizer = TfidfVectorizer(tokenizer=ToxicityClassifier.tokenizer, stop_words=self.stopwords, analyzer="word")
+        self.vectorizer = TfidfVectorizer(tokenizer=ToxicityClassifier.tokenizer, max_features=10000, stop_words=self.stopwords, analyzer='word', dtype=np.float32)
 
         # creating the Multinomial Naive Bayes with Laplacian smoothing.
         self.classifier = MultinomialNB()
-
-        # only fit_transform for the first run, and then just transform the vector so that we don't have a situation
-        # that your previous incremental traning and new traning set have different number of features, and it ends up
-        # Panda/Scikit-learn complaining about it.
-        first_run = True
 
         # if and only if model doesn't exist in the file, execute this block, means you need to delete the existing model file to re-run this.
         if os.path.exists(constant.CLASSIFIER_FILE) == False:
             print("Can't find existing classifier stored in the file. Creating one...")
 
-            for df in pd.read_csv(constant.TRAINING_DATA_PATH, delimiter=',', error_bad_lines=True, skipinitialspace=True, chunksize=constant.CVS_CHUNKSIZE, iterator=True):
-                df = df.replace('\n','', regex=True)
-                # The data I got have 6 different categorizaiton, not just toxic or not, so merging it all together as one label
-                # as long as there is at least one field marked as '1', those will be considered as toxic.
-                # Instead of just getting each feature from dataframe, we can actually reduce the size of dataframe by calling df.pop().
-                toxic = \
-                    df.pop('toxic') | \
-                    df.pop('severe_toxic') | \
-                    df.pop('obscene') | \
-                    df.pop('threat') | \
-                    df.pop('insult') | \
-                    df.pop('identity_hate')
-                
-                # I would try word2vec or other word embedding method if I have more time with the project...
-                # but this is how I'm going to solve the issue that # of features between previous and new one is going to have.
-                # TODO : change those to word embedding + lookup
-                if first_run == True:
-                    training = self.vectorizer.fit_transform(df['comment_text'])  
-                    first_run = False
-                else:
-                    training = self.vectorizer.transform(df['comment_text'])  
+            # for df in pd.read_csv(constant.TRAINING_DATA_PATH, delimiter=',', error_bad_lines=True, skipinitialspace=True, chunksize=constant.CVS_CHUNKSIZE, iterator=True):
+            dtypes = {
+                'toxic' : 'uint8',
+                'severe_toxic' : 'uint8',
+                'obscene' : 'uint8',
+                'threat' : 'uint8',
+                'insult' : 'uint8',
+                'identity_hate' : 'uint8'
+            }
 
-                # if you want to check what's the transformed chat log matrix look like, uncomment below lines.
-                #print("looking at the shape of the training set...")
-                #print(training.shape)
-                #print(training)
+            df = pd.read_csv(constant.TRAINING_DATA_PATH, dtype=dtypes)
+            df = df.replace('\n','', regex=True)
 
-                print("Initiating incremental training...")
-                self.classifier.partial_fit(training.toarray(), toxic.values, classes=np.unique(toxic))
+            toxic = \
+                df['toxic'] | \
+                df['severe_toxic'] | \
+                df['obscene'] | \
+                df['threat'] | \
+                df['insult'] | \
+                df['identity_hate'] 
+            
+            training = self.vectorizer.fit_transform(df['comment_text'])  
+            del df
+            gc.collect()
+
+            print("Initiating training...")
+            train_x, test_x, train_y, test_y = train_test_split(training.toarray(), toxic.values, test_size=0.2)
+            del training
+            gc.collect()
+            self.classifier.fit(train_x, train_y)
+
+            del train_x, train_y
+            gc.collect()
                 
-            print("Completed training. Initiating toxic message cateorization...")
+            print("Completed training. Generating classification result...")
+            pred_y = self.classifier.predict(test_x)
+
+            del test_x
+            gc.collect()
+
+            print(classification_report(test_y, pred_y))
 
             # store the classifier and vectorizer so it can be used later    
             print("Storing classifier and vectorizer into disk...")
@@ -114,7 +121,7 @@ class ToxicityClassifier():
     # with given parameter s, it returns whether s is toxic or not
     # it is not expecting any arrays, it should be just single string value
     def isToxic(self, s):
-        print("input words:", self.vectorizer.transform( np.array([s])).toarray())
+        #print("input words:", self.vectorizer.transform( np.array([s])).toarray())
         pred = self.classifier.predict( self.vectorizer.transform( np.array([s])).toarray() )
         #print(pd.DataFrame(self.classifier.predict_log_proba( self.vectorizer.transform( np.array([s])).toarray() ), columns=self.classifier.classes_))
         if pred[0] == 1:
@@ -142,10 +149,6 @@ def main():
     # transform test data's chat log to the existing vecorizer so it can be used for prediction        
     data = toxicClassifier.vectorizer.transform( df['comment_text'] )
     preds = toxicClassifier.classifier.predict( data )
-
-    # enable blow if you want to see what's the prediction for entire dataframe.
-    # print("preds")
-    # print(preds)
 
     # print(pd.DataFrame(preds, columns=toxicClassifier.classifier.classes_))
     for i in range(len(preds)):

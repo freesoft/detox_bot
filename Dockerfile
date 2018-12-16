@@ -20,10 +20,11 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt && \
     pip freeze
 
-WORKDIR /app
+RUN mkdir -p /app
 EXPOSE 5000
 
 COPY . /app
+WORKDIR /app
 
 RUN python3 -m nltk.downloader popular
 
