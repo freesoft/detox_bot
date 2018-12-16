@@ -25,11 +25,11 @@ EXPOSE 5000
 
 COPY . /app
 
-
 RUN python3 -m nltk.downloader popular
 
 # prepare classifier and vectorizer so webapp will start up faster
 RUN python3 ./detox_engine.py
+
 ENTRYPOINT ["python3", "-u"]
 CMD ["/app/webapp.py"]
 
