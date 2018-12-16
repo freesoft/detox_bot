@@ -80,8 +80,8 @@ A few customizations are done here.<br/>
 
 ### How the core engine is integrated
 
-<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile modified=\&quot;2018-12-16T03:30:02.177Z\&quot; host=\&quot;www.draw.io\&quot; agent=\&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.1 Safari/605.1.15\&quot; etag=\&quot;I3UR88yBiWHYTAMac1So\&quot; version=\&quot;9.6.5\&quot; type=\&quot;github\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot; id=\&quot;74e2e168-ea6b-b213-b513-2b3c1d86103e\&quot;&gt;7Zddb9owFIZ/TaTtYlOIk1Au19B10lRpWtmqXlUmOSTWTBw5hoT9+h0Tm3zB1lZqx0W5wXltn+PzvHYMDonW9bWkRXYjEuCO5ya1Q+aO53nu1MUvrewaZTKZeo2SSpYYrRVu2W8wopmYblgCZW+gEoIrVvTFWOQ5xKqnUSlF1R+2EryftaApjITbmPKxescSldkyXLft+AIszUzqi8B0LGn8K5Vik5t8jkdW+0/TvaY2lhlfZjQRVUciVw6JpBCqaa3rCLiGa7E18z6f6D2sW0KuHjPh+3x5r+48/0c4u5nR7KuMgocPxqst5RvDY1ExFWeLn6hGGVVLXF6zfLWzyLCSQjcxPrqErctMrTkKE2wmtMxAp3TxocqYgrKgsR5e4Q5CbbxuU8oWpIK6I5k6rkGsQckdDrHbzm4eu+lC81x1HLRa1jFvQoxIza5JD7Fbctgw8J4AkoxAVrCMEaBOVhTnxzCcPpeh/1IM/RFDLFwDTKiienKuDzhDhGdH0/eCHs1g+t93ZDCi6Xghx7SXWD6SDFPdXoiaxUztIk7Lkq0YSJzzzsJOQIn6AfKU5fCx0PW+t0FwTd0452cJCfsbnARjS7zZq1oSHrHkBLYVh/qTvt4QBuSJac7jvU1xnyYeCR4JLuQ+hL2F/gIRkt6dOEbYQRQcIWQ1CZwqtu3fpMeomQzfBMtV61DgDg5NMABfio2MwczqXm3/CuQOAikqU1CjQHsTD2U/39fpm69dO4g/OHlDOx7rq++eOMKv5OvFm69dO8JZ347D2/OpvobkpXzFx/YXdTO8/d9Crv4A&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-<script type="text/javascript" src="https://www.draw.io/js/viewer.min.js"></script>
+
+![diagram 2](/diagram/overview_diagram_2.png)
 
 ## FAQ
 
