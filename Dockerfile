@@ -1,5 +1,9 @@
 FROM ubuntu:18.04
-MAINTAINER Wonhee Jung "wonheej2@illinois.edu"
+ENV TERM xterm
+ENV LC_ALL C.UTF-8
+ENV FLASK_APP webapp.py
+LABEL maintainer="Wonhee Jung(wonheej2@illinois.edu)"
+
 RUN apt-get update && apt-get install -y \
     software-properties-common
 RUN add-apt-repository universe
@@ -7,16 +11,25 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     python3.6 \
-    python3-pip
-COPY . /app
+    python3-pip && \ 
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt /requirements.txt
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt && \
+    pip freeze
+
 WORKDIR /app
-RUN pip3 install -U nltk
+EXPOSE 5000
+
+COPY . /app
+
+
 RUN python3 -m nltk.downloader popular
-RUN pip3 install -U numpy
-RUN pip3 install -r requirements.txt
+
 # prepare classifier and vectorizer so webapp will start up faster
 RUN python3 ./detox_engine.py
-ENTRYPOINT ["python3"]
-CMD ["webapp.py"]
+ENTRYPOINT ["python3", "-u"]
+CMD ["/app/webapp.py"]
 
-EXPOSE 5000

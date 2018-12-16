@@ -5,5 +5,6 @@ Dockerfile
 README.md
 CODE_OF_CONDUCT.md
 LICENSE
-env.*
-devops
+__pycache__
+.vscode
+Procfile

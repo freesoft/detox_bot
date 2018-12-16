@@ -17,6 +17,7 @@ import nltk
 import numpy as np
 import pandas as pd
 from joblib import dump, load
+from nltk import word_tokenize,sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB

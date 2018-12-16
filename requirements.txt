@@ -4,6 +4,7 @@ pandas
 joblib
 sklearn
 gevent
+gevent-websocket
 flask
 flask_socketio
 flask_sockets
