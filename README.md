@@ -15,7 +15,7 @@ This project is for my University of Illinois at Urbana-Champaign MCS-DS Fall 20
 * Integrated simple web chat app and TwitchTV chatbot.
 
 
-## How to Use
+## How to Install
 
 `detox_engine.py` Four ways to install and use. From using existing Heroku instance to run it locally as usual Python program. 
 
@@ -48,6 +48,7 @@ python ./webapp.py
 to train the model before running the test app. The code has sme dependency so you probably need to install a few other python libraries that's specified in requirements.txt. brew, apt-get, macport, pip, anaconda, virtualenv, etc. there are many choices you can install those dependencies.
 
 
+## How to Use
 
 ### With TwitchTV channel
 
@@ -81,6 +82,17 @@ A few customizations are done here.<br/>
 
 
 ![diagram 2](/diagram/overview_diagram_2.png)
+
+### Performance ###
+
+Shuffled the training set and took 20% of it as comparsion using scikit-learn's classification_report, and here is the result.
+
+|     | precision | recall | f1-score | support |
+|-----------------------------------------------|
+|   0 |  0.94     | 1.00   |  0.97    | 28629   |
+|   1 |  0.95     | 0.48   |  0.64    | 3286    |
+|avg/total|  0.94     | 0.94   |  0.94    | 31915  |
+
 
 ## FAQ
 
