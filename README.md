@@ -14,11 +14,12 @@ Both web chat and Twitch TV chatbot are implemented for Detox testing. ( Don't e
 
 Precision/Recall/F1-Score : Shuffled the training set and took 20% of it as comparsion using scikit-learn's classification_report, and here is the result. The data can vary slightly every time and also depends on what kind of dataset is used for training.
 
+
 |     | precision | recall | f1-score | support |
-|-----------------------------------------------|
-|   0 |  0.94     | 1.00   |  0.97    | 28629   |
-|   1 |  0.95     | 0.48   |  0.64    | 3286    |
-|avg/total|  0.94     | 0.94   |  0.94    | 31915  |
+-----|-----------|--------|----------|----------
+   0 |  0.94     | 1.00   |  0.97    | 28629   
+   1 |  0.95     | 0.48   |  0.64    | 3286    
+avg/total|  0.94     | 0.94   |  0.94    | 31915  
 
 
 ### Initialization process
