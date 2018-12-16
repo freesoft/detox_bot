@@ -7,6 +7,7 @@ UIUC MCS-DS CS410 Fall 2018 Project
 Those sample data files are downloaded from Kaggle.
 '''
 import csv
+import gc
 import os
 import os.path
 import sys
@@ -27,7 +28,7 @@ from sklearn.metrics import classification_report,confusion_matrix
 # includes all the defined constant variables.
 import constant
 
-os.environ['OMP_NUM_THREADS'] = '3'
+os.environ['OMP_NUM_THREADS'] = '2'
 
 # The class will create two joblib files to store the trained classifier and vectorizer so that it can be reused quickly
 # instead of training it from the beginning.
@@ -58,7 +59,15 @@ class ToxicityClassifier():
             print("Can't find existing classifier stored in the file. Creating one...")
 
             # for df in pd.read_csv(constant.TRAINING_DATA_PATH, delimiter=',', error_bad_lines=True, skipinitialspace=True, chunksize=constant.CVS_CHUNKSIZE, iterator=True):
-            df = pd.read_csv(constant.TRAINING_DATA_PATH)
+            dtypes = {
+                'toxic' : 'uint8',
+                'severe_toxic' : 'uint8',
+                'obscene' : 'uint8',
+                'threat' : 'uint8',
+                'insult' : 'uint8',
+                'identity_hate' : 'uint8'
+            }
+            df = pd.read_csv(constant.TRAINING_DATA_PATH, dtype=dtypes)
             df = df.replace('\n','', regex=True)
             # The data I got have 6 different categorizaiton, not just toxic or not, so merging it all together as one label
             # as long as there is at least one field marked as '1', those will be considered as toxic.
@@ -84,6 +93,8 @@ class ToxicityClassifier():
             # TODO : change those to word embedding + lookup
             #if first_run == True:
             training = self.vectorizer.fit_transform(df['comment_text'])  
+            del df
+            gc.collect()
                 #first_run = False
             #else:
             #    training = self.vectorizer.transform(df['comment_text'])  
@@ -95,11 +106,20 @@ class ToxicityClassifier():
 
             print("Initiating training...")
             train_x, test_x, train_y, test_y = train_test_split(training.toarray(), toxic.values, test_size=0.2)
+            del training
+            gc.collect()
             self.classifier.fit(train_x, train_y)
+
+            del train_x, train_y
+            gc.collect()
                 
-            print("Completed training. Generating classification result...")
-            pred_y = self.classifier.predict(test_x)
-            print(classification_report(test_y, pred_y))
+            #print("Completed training. Generating classification result...")
+            #pred_y = self.classifier.predict(test_x)
+
+            del test_x, test_y
+            gc.collect()
+
+            #print(classification_report(test_y, pred_y))
 
             # store the classifier and vectorizer so it can be used later    
             print("Storing classifier and vectorizer into disk...")
